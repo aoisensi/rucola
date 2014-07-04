@@ -29,8 +29,8 @@ namespace Rucola { namespace SDLW {
 		}
 	}
 
-	Window::Window(std::string title, int x, int y, int w, int h, Flags flags) :
-		window(SDL_CreateWindow(title.c_str(), x, y, w, h, toNativeFlags(flags)))
+	Window::Window(std::string title, int w, int h, Flags flags) :
+		window(SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, toNativeFlags(flags)))
 	{
 		if(!window) throw new std::exception();
 	}

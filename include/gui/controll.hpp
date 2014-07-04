@@ -3,9 +3,9 @@
 
 namespace Rucola { namespace GUI {
 
-class final Controll {
+class Controll {
 	
-}
+};
 
 }}
 

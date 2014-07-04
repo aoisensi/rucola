@@ -7,14 +7,20 @@ set(CMAKE_C_COMPILER clang)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+find_package(Boost 1.55.0)
 find_package(OpenGL)
 find_package(SDL)
+
+if( NOT Boost_FOUND )
+	message("error boost 404")
+endif( NOT Boost_FOUND )
 
 if( NOT SDL_FOUND )
 	message("error sdl 404")
 endif( NOT SDL_FOUND )
 
 include_directories(
+	${BOOST_INCLUDE_DIRS}
 	${OPENGL_INCLUDE_DIRS}
 	${SDL_INCLUDE_DIR}
 	${CMAKE_CURRENT_SOURCE_DIR}/include

@@ -33,9 +33,7 @@ namespace Rucola { namespace SDLW {
 			AllowHighDPI        = 1 << 13,
 		};
 
-
-
-		Window(std::string title, int x, int y, int w, int h, Flags flags);
+		Window(std::string title, int w, int h, Flags flags);
 		virtual ~Window();
 
 		private:
