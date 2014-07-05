@@ -8,9 +8,9 @@
 namespace Rucola { namespace SDLW { namespace Video {
 
 Renderer::Renderer(Window window) :
-  ptr(SDL_CreateRenderer(window.ptr, -1, SDL_RENDERER_SOFTWARE))
+  ptr(SDL_CreateRenderer(window.ptr, -1, SDL_RENDERER_ACCELERATED))
 {
-  Error::Print();
+    Error::Print();
 };
 
 Renderer::~Renderer() {

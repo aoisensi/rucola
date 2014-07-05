@@ -14,9 +14,9 @@ namespace Rucola { namespace SDLW {
     return string(SDL_GetError());
   };
 
-  void Error::Set(std::string message) {
-    SDL_SetError(message.c_str());
-  };
+  // void Error::Set(std::string message) {
+  //   SDL_SetError(message.c_str());
+  // };
 
   bool Error::Print() {
     string mes = Get();

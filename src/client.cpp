@@ -14,9 +14,9 @@ Client::Client() :
 Client::~Client() { };
 
 int Client::Run() {
-	SDLW::Error::Print();
 	bool quit;
 	SDLW::Video::Renderer render(window);
+	SDLW::Delay(1000);
 	render.SetDrawColor();
 	while(!quit) {
 		Error::Print();
