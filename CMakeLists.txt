@@ -34,3 +34,5 @@ target_link_libraries(rucola
 	${OPENGL_LIBRARIES}
 	${SDL_LIBRARY}
 )
+
+message(${SDL_INCLUDE_DIR})

@@ -18,15 +18,29 @@ int Client::Run() {
 	while(!quit) {
 		SDLW::Delay(30);
 		for(auto e : SDLW::Events::Poll()) {
-			switch(e.type) {
-				case SDLW::Events::Type::Quit:
+			switch(e.GetType()) {
+				case SDLW::Events::Base::Type::quit: {
 					quit = true;
 					break;
-				case SDLW::Events::Type::MouseMotion:
-					cout << e.Mouse.Motion.pos.x << ',' << e.Mouse.Motion.pos.y << endl;
+				}
+				case SDLW::Events::Base::Type::mouse: {
+					auto ev = e.GetMouse();
+					switch(ev.GetType()) {
+						case SDLW::Events::Event::Mouse::motion: {
+							auto event = ev.GetMotion();
+							cout << event.pos.x << ',' << event.pos.x << endl;
+							break;
+						}
+						default: {
+							break;
+						}
+					}
 					break;
-				default:
+				}
+
+				default: {
 					break;
+				}
 			}
 		}
 	}

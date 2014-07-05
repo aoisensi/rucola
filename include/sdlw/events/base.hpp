@@ -1,61 +1,50 @@
 #ifndef HPP_RUCOLA_SDLW_EVENT_BASE
 #define HPP_RUCOLA_SDLW_EVENT_BASE
 
+#include <vector>
 #include <cstdint>
+#include <boost/variant.hpp>
 
 #include <SDL2/SDL_events.h>
 
 #include "math/point.hpp"
+#include "event_mouse.hpp"
 
 using namespace Rucola::Math;
 
 namespace Rucola { namespace SDLW { namespace Events {
 
-	enum Type : uint32_t {
-		Quit					= SDL_QUIT,
+	namespace Event {
+		struct Quit {};
+	}
 
-		MouseMotion				= SDL_MOUSEMOTION,
-		MouseButtonDown			= SDL_MOUSEBUTTONDOWN,
-		MouseButtonUp			= SDL_MOUSEBUTTONUP,
-		MouseWheel				= SDL_MOUSEWHEEL,
-		/* MORE TODO */
-	};
+	struct Base {
+	public:
+		Base(SDL_Event event);
 
-	enum State : uint8_t {
-		Pressed					= SDL_PRESSED,
-		Released				= SDL_RELEASED,
-	};
+		enum Type {
+			unknown,
+			quit,
+			mouse,
+		};
 
-	union Event {
-		Type type;
 		uint32_t timestamp;
 
-		struct {
-		} Quit;
+	private:
+		boost::variant<
+			boost::blank,
+			Event::Quit,
+			Event::Mouse
+		> v;
 
-		union {
-			uint32_t windowID;
-			uint32_t which;
+	public:
+		Type GetType();
+		Event::Quit GetQuit();
+		Event::Mouse GetMouse();
 
-			struct {
-				uint32_t state;
-				Point pos;
-				Point rel;
-			} Motion;
-
-			struct {
-				uint32_t button;
-				State state;
-				uint32_t clicks;
-				uint32_t padding;
-				Point pos;
-			} Button;
-
-			struct {
-				Point scroll;
-			} Wheel;
-		} Mouse;
 	};
+
+	std::vector<Base> Poll();
 
 }}}
 #endif
