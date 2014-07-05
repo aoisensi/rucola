@@ -8,15 +8,19 @@ using namespace std;
 namespace Rucola {
 
 Client::Client() :
-	window("Rucola", 640, 480, Window::Flags::Shown)
+	window("Rucola", 640, 480, Video::Window::Flags::Shown)
 { };
 
 Client::~Client() { };
 
 int Client::Run() {
+	SDLW::Error::Print();
 	bool quit;
+	SDLW::Video::Renderer render(window);
+	render.SetDrawColor();
 	while(!quit) {
-		SDLW::Delay(30);
+		Error::Print();
+		render.Clear();
 		for(auto e : SDLW::Events::Poll()) {
 			switch(e.GetType()) {
 				case SDLW::Events::Base::Type::quit: {
@@ -26,10 +30,15 @@ int Client::Run() {
 				case SDLW::Events::Base::Type::mouse: {
 					auto ev = e.GetMouse();
 					switch(ev.GetType()) {
-						case SDLW::Events::Event::Mouse::motion: {
+						case SDLW::Events::Event::Mouse::Type::motion: {
 							auto event = ev.GetMotion();
-							cout << event.pos.x << ',' << event.pos.x << endl;
+							cout << "move to " << event.pos.x << ',' << event.pos.y << endl;
+							render.DrawPoint(event.pos);
 							break;
+						}
+						case SDLW::Events::Event::Mouse::Type::button: {
+							auto event = ev.GetButton();
+							cout << "clicked" << endl;
 						}
 						default: {
 							break;
@@ -43,6 +52,8 @@ int Client::Run() {
 				}
 			}
 		}
+		render.Present();
+		SDLW::Delay(30);
 	}
 	return 0;
 }

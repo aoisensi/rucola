@@ -1,8 +1,8 @@
-#include "sdlw/window.hpp"
+#include "sdlw/video/video.hpp"
 
-#include <SDL2/SDL.h>
+#include <SDL2/SDL_video.h>
 
-namespace Rucola { namespace SDLW {
+namespace Rucola { namespace SDLW { namespace Video {
 
 	namespace {
 		bool hasFlag(Window::Flags flags, Window::Flags checker) {
@@ -30,13 +30,21 @@ namespace Rucola { namespace SDLW {
 	}
 
 	Window::Window(std::string title, int w, int h, Flags flags) :
-		window(SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, toNativeFlags(flags)))
+		ptr(SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, toNativeFlags(flags)))
 	{
-		if(!window) throw new std::exception();
+		if(!ptr) throw new std::exception();
 	}
 
 	Window::~Window() {
-		SDL_DestroyWindow(window);
+		SDL_DestroyWindow(ptr);
+	}
+
+	Surface Window::GetSurface() {
+		return Surface(SDL_GetWindowSurface(ptr));
+	}
+
+	void Window::Show() {
+		SDL_ShowWindow(ptr);
 	}
 
 	Window::Flags operator | (Window::Flags l, Window::Flags r) {
@@ -47,4 +55,4 @@ namespace Rucola { namespace SDLW {
 		return static_cast<Window::Flags>(static_cast<int>(l) & static_cast<int>(r));
 	}
 
-}}
+}}}

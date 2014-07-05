@@ -11,7 +11,7 @@ public:
 	~Client();
 	int Run();
 private:
-	SDLW::Window window;
+	SDLW::Video::Window window;
 };
 
 }
