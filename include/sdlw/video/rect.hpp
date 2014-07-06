@@ -3,12 +3,17 @@
 
 #include <SDL2/SDL_rect.h>
 
+#include "math/rect.hpp"
+
 namespace Rucola { namespace SDLW { namespace Video {
 
-  struct Point : SDL_Point {
-  public:
+    struct Point : public SDL_Point {
+        Point(Math::Point point);
+    };
 
-  };
+    struct Rect : public SDL_Rect {
+        Rect(Math::Rect rect);
+    };
 
 }}}
 

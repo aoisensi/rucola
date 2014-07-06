@@ -6,6 +6,7 @@
 #include "video.hpp"
 #include "math/point.hpp"
 #include "math/color.hpp"
+#include "math/rect.hpp"
 
 namespace Rucola { namespace SDLW { namespace Video {
   class Window;
@@ -21,6 +22,8 @@ namespace Rucola { namespace SDLW { namespace Video {
     void SetDrawColor(Math::Color color);
     void DrawPoint(Rucola::Math::Point point);
     void DrawLine(Rucola::Math::Point p1, Rucola::Math::Point p2);
+    void DrawRect(Rucola::Math::Rect& rect);
+    void FillRect(Rucola::Math::Rect& rect);
     void Present();
   };
 }}}

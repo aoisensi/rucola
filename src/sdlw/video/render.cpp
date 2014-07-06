@@ -2,6 +2,7 @@
 
 #include "sdlw/timer.hpp"
 #include "sdlw/error.hpp"
+#include "sdlw/video/rect.hpp"
 
 #include <iostream>
 
@@ -36,5 +37,15 @@ void Renderer::DrawLine(Rucola::Math::Point p1, Rucola::Math::Point p2) {
 void Renderer::Present() {
     SDL_RenderPresent(ptr);
 };
+
+void Renderer::DrawRect(Rucola::Math::Rect& rect) {
+    SDLW::Video::Rect r(rect);
+    SDL_RenderDrawRect(ptr, &r);
+}
+
+void Renderer::FillRect(Rucola::Math::Rect& rect) {
+    SDLW::Video::Rect r(rect);
+    SDL_RenderFillRect(ptr, &r);
+}
 
 }}}

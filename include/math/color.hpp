@@ -10,11 +10,8 @@ namespace Rucola { namespace Math {
         Color(uint8_t r, uint8_t g, uint8_t b);
         Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
-        static const Color White;
-        static const Color Black;
-        static const Color Red;
-        static const Color Green;
-        static const Color Blue;
+        static const Color
+            White, Black, Gray, Red, Green, Blue;
     };
 }}
 
