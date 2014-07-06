@@ -14,9 +14,10 @@ Client::Client() :
 Client::~Client() { };
 
 int Client::Run() {
-	bool quit;
-	SDLW::Video::Renderer render(window);
+	bool quit = false;
+	long frame = 0;
 	SDLW::Delay(1000);
+	SDLW::Video::Renderer render(window);
 	render.SetDrawColor();
 	while(!quit) {
 		Error::Print();
@@ -53,6 +54,8 @@ int Client::Run() {
 			}
 		}
 		render.Present();
+		cout << "frame:" << frame << endl;
+		frame++;
 		SDLW::Delay(30);
 	}
 	return 0;

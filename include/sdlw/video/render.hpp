@@ -13,7 +13,7 @@ namespace Rucola { namespace SDLW { namespace Video {
   public:
     SDL_Renderer* ptr;
 
-    Renderer(Window window);
+    Renderer(Window& window);
     ~Renderer();
 
     void Clear();
