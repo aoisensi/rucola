@@ -5,6 +5,7 @@
 
 #include "video.hpp"
 #include "math/point.hpp"
+#include "math/color.hpp"
 
 namespace Rucola { namespace SDLW { namespace Video {
   class Window;
@@ -17,8 +18,9 @@ namespace Rucola { namespace SDLW { namespace Video {
     ~Renderer();
 
     void Clear();
-    void SetDrawColor();
+    void SetDrawColor(Math::Color color);
     void DrawPoint(Rucola::Math::Point point);
+    void DrawLine(Rucola::Math::Point p1, Rucola::Math::Point p2);
     void Present();
   };
 }}}

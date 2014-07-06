@@ -5,6 +5,7 @@
 
 namespace Rucola { namespace Math {
 	struct Point {
+		Point();
 		Point(int x, int y);
 		int x, y;
 	};

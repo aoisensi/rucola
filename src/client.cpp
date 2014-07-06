@@ -16,12 +16,12 @@ Client::~Client() { };
 int Client::Run() {
 	bool quit = false;
 	long frame = 0;
-	SDLW::Delay(1000);
+	Math::Point old;
 	SDLW::Video::Renderer render(window);
-	render.SetDrawColor();
+	render.SetDrawColor(Math::Color::Black);
+	render.Clear();
 	while(!quit) {
 		Error::Print();
-		render.Clear();
 		for(auto e : SDLW::Events::Poll()) {
 			switch(e.GetType()) {
 				case SDLW::Events::Base::Type::quit: {
@@ -33,8 +33,9 @@ int Client::Run() {
 					switch(ev.GetType()) {
 						case SDLW::Events::Event::Mouse::Type::motion: {
 							auto event = ev.GetMotion();
-							cout << "move to " << event.pos.x << ',' << event.pos.y << endl;
-							render.DrawPoint(event.pos);
+							render.SetDrawColor(Math::Color::Green);
+							render.DrawLine(old, event.pos);
+							old = event.pos;
 							break;
 						}
 						case SDLW::Events::Event::Mouse::Type::button: {
