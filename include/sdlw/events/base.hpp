@@ -8,7 +8,7 @@
 #include <SDL2/SDL_events.h>
 
 #include "math/point.hpp"
-#include "event_mouse.hpp"
+#include "event/mouse.hpp"
 
 using namespace Rucola::Math;
 

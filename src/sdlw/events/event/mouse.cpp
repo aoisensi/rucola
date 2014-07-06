@@ -1,4 +1,4 @@
-#include "sdlw/events/event_mouse.hpp"
+#include "sdlw/events/event/mouse.hpp"
 
 
 namespace Rucola { namespace SDLW { namespace Events { namespace Event {
