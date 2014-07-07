@@ -15,6 +15,7 @@ public:
     ~Client();
     int Run();
 private:
+    Math::Point size;
     SDLW::Video::Window window;
     SDLW::Video::Renderer renderer;
     unique_ptr<GUI::Controll> controll;

@@ -10,7 +10,8 @@ using namespace Rucola::Math;
 namespace Rucola { namespace GUI {
 
 class Controll {
-    virtual void RideCursor() = 0;
+public:
+    virtual void EnterCursor() = 0;
     virtual void LeaveCursor() = 0;
     virtual void MoveCursor(Point pos) = 0;
     virtual void Rendering(SDLW::Video::Renderer& renderer, Rect rect) = 0;

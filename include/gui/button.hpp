@@ -16,7 +16,7 @@ public:
     Button(std::string message);
     ~Button();
 
-    void RideCursor();
+    void EnterCursor();
     void LeaveCursor();
     void MoveCursor(Point pos);
     void Rendering(SDLW::Video::Renderer& renderer, Rect rect);

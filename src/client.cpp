@@ -10,7 +10,8 @@ using namespace std;
 namespace Rucola {
 
 Client::Client():
-    window("Rucola", 640, 480, Video::Window::Flags::Shown),
+    size(640, 480),
+    window("Rucola", size.x, size.y, Video::Window::Flags::Shown),
     renderer(window),
     frame(0),
     controll(new GUI::Button("test"))
@@ -42,7 +43,7 @@ int Client::Run() {
                         }
                         case SDLW::Events::Event::Mouse::Type::button: {
                             auto event = ev.GetButton();
-                            cout << "clicked" << endl;
+                            break;
                         }
                         default: {
                             break;
@@ -50,14 +51,29 @@ int Client::Run() {
                     }
                     break;
                 }
-
+                case SDLW::Events::Base::Type::window: {
+                    auto ev = e.GetWindow();
+                    switch(ev.GetType()) {
+                        case SDLW::Events::Event::Window::Type::enter: {
+                            controll->EnterCursor();
+                            break;
+                        }
+                        case SDLW::Events::Event::Window::Type::leave: {
+                            controll->LeaveCursor();
+                            break;
+                        }
+                        default:
+                            break;
+                    }
+                    break;
+                }
                 default: {
                     break;
                 }
             }
         }
+        controll->Rendering(renderer, Math::Rect(size));
         renderer.Present();
-        cout << "frame:" << frame << endl;
         frame++;
         SDLW::Delay(30);
     }

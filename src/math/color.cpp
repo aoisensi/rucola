@@ -13,6 +13,6 @@ namespace Rucola { namespace Math {
     const Color Color::Black   = Color(  0,   0,   0);
     const Color Color::Gray    = Color(128, 128, 128);
     const Color Color::Red     = Color(255,   0,   0);
-    const Color Color::Green   = Color(  0, 255,   0);
+    const Color Color::Green   = Color(  0, 128,   0);
     const Color Color::Blue    = Color(  0,   0, 255);
 }}

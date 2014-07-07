@@ -9,42 +9,45 @@
 
 #include "math/point.hpp"
 #include "event/mouse.hpp"
+#include "event/window.hpp"
 
 using namespace Rucola::Math;
 
 namespace Rucola { namespace SDLW { namespace Events {
 
-	namespace Event {
-		struct Quit {};
-	}
+    namespace Event {
+        struct Quit {};
+    }
 
-	struct Base {
-	public:
-		Base(SDL_Event event);
+    struct Base {
+    public:
+        Base(SDL_Event event);
 
-		enum Type {
-			unknown,
-			quit,
-			mouse,
-		};
+        enum Type {
+            unknown,
+            quit,
+            mouse,
+            window,
+        };
 
-		uint32_t timestamp;
+        uint32_t timestamp;
 
-	private:
-		boost::variant<
-			boost::blank,
-			Event::Quit,
-			Event::Mouse
-		> v;
+    private:
+        boost::variant<
+            boost::blank,
+            Event::Quit,
+            Event::Mouse,
+            Event::Window
+        > v;
 
-	public:
-		Type GetType();
-		Event::Quit GetQuit();
-		Event::Mouse GetMouse();
+    public:
+        Type GetType();
+        Event::Quit GetQuit();
+        Event::Mouse GetMouse();
+        Event::Window GetWindow();
+    };
 
-	};
-
-	std::vector<Base> Poll();
+    std::vector<Base> Poll();
 
 }}}
 #endif
