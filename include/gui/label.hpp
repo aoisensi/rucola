@@ -1,5 +1,5 @@
-#ifndef HPP_RUCOLA_GUI_BUTTON
-#define HPP_RUCOLA_GUI_BUTTON
+#ifndef HPP_GUI_LABEL
+#define HPP_GUI_LABEL
 
 #include <string>
 
@@ -7,18 +7,20 @@
 
 namespace Rucola { namespace GUI {
 
-class Button : public Controll {
+class Label : public Controll {
 
-    bool rideing;
+    std::string text;
 
 public:
-    Button(std::string message);
-    ~Button();
+    Label(std::string message);
+    ~Label();
 
     void EnterCursor();
     void LeaveCursor();
     void MoveCursor(Point pos);
     void Rendering(SDLW::Video::Renderer& renderer, Rect rect);
+
+    void SetText(std::string text);
 };
 
 }}

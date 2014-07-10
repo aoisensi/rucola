@@ -13,7 +13,7 @@ namespace Rucola { namespace SDLW {
     static void Clear();
     static string Get();
     // static void Set(std::string message);
-    static bool Print();
+    static void Throw();
   };
 }}
 

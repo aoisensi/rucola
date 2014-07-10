@@ -4,7 +4,6 @@
 namespace Rucola { namespace GUI {
 
 Button::Button(std::string message):
-    message(message),
     rideing(false)
 { };
 

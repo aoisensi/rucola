@@ -27,7 +27,7 @@ int Client::Run() {
     renderer.SetDrawColor(Math::Color::White);
     renderer.Clear();
     while(!quit) {
-        Error::Print();
+        Error::Throw();
         for(auto e : SDLW::Events::Poll()) {
             switch(e.GetType()) {
                 case SDLW::Events::Base::Type::quit: {
