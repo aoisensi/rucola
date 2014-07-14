@@ -3,18 +3,31 @@
 
 #include <SDL2/SDL_surface.h>
 
-namespace Rucola { namespace SDLW { namespace Video {
+namespace Rucola { namespace SDLW {
 
-  class Surface {
-  public:
-    Surface(SDL_Surface* surface);
+    namespace TTF { class Font; }
 
-  private:
-    SDL_Surface* surface;
+    namespace Video {
+        class Window;
+        class Texture;
 
-  public:
-  };
+        class Surface {
+        private:
+            SDL_Surface* ptr;
+            Surface(SDL_Surface* ptr);
+            ~Surface();
 
-}}}
+            friend Rucola::SDLW::TTF::Font;
+            friend Rucola::SDLW::Video::Window;
+            friend Rucola::SDLW::Video::Texture;
+        public:
+
+            int GetWidth();
+            int GetHeight();
+            int GetPitch();
+        };
+    }
+
+}}
 
 #endif

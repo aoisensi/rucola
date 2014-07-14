@@ -5,7 +5,8 @@
 
 #include "controll.hpp"
 
-namespace Rucola { namespace GUI {
+namespace Rucola {
+namespace GUI {
 
 class Button : public Controll {
 
@@ -18,9 +19,9 @@ public:
     void EnterCursor();
     void LeaveCursor();
     void MoveCursor(Point pos);
-    void Rendering(SDLW::Video::Renderer& renderer, Rect rect);
+    void Rendering(SDLW::Video::Renderer &renderer, Rect rect);
 };
-
-}}
+}
+}
 
 #endif

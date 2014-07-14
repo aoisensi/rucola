@@ -1,7 +1,5 @@
 #include "gui/label.hpp"
 
-namespace Rucola { namespace GUI {
-
-
-
-}}
+namespace Rucola {
+namespace GUI {}
+}

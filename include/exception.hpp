@@ -7,17 +7,16 @@
 
 namespace Rucola {
     class Exception : public std::exception, public boost::exception {
+        std::string message;
     public:
         Exception();
-        Exception(std::string mes):
-            std::exception(mes)
-        { };
+        Exception(std::string& message);
     };
 
     /*
     kopipe you
     BOOST_THROW_EXCEPTION(Exception());
-    */
+    **/
 }
 
 #endif

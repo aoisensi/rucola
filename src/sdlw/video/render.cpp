@@ -8,44 +8,58 @@
 
 namespace Rucola { namespace SDLW { namespace Video {
 
-Renderer::Renderer(Window& window) :
-    ptr(SDL_CreateRenderer(window.ptr, -1, SDL_RENDERER_SOFTWARE))
-{
-    Error::Throw();
-};
+    Renderer::Renderer(Window& window) :
+        ptr(SDL_CreateRenderer(window.ptr, -1, SDL_RENDERER_SOFTWARE))
+    {
+        Error::Throw();
+    };
 
-Renderer::~Renderer() {
-    SDL_DestroyRenderer(ptr);
-};
+    Renderer::~Renderer() {
+        SDL_DestroyRenderer(ptr);
+    };
 
-void Renderer::Clear() {
-    SDL_RenderClear(ptr);
-}
+    void Renderer::Clear() {
+        SDL_RenderClear(ptr);
+    }
 
-void Renderer::SetDrawColor(Math::Color color) {
-    SDL_SetRenderDrawColor(ptr, color.r, color.g, color.b, color.a);
-};
+    void Renderer::SetDrawColor(Math::Color color) {
+        SDL_SetRenderDrawColor(ptr, color.r, color.g, color.b, color.a);
+    };
 
-void Renderer::DrawPoint(Rucola::Math::Point point) {
-  SDL_RenderDrawPoint(ptr, point.x, point.y);
-};
+    void Renderer::Copy(Texture texture) {
+        if(SDL_RenderCopy(ptr, texture.ptr, NULL, NULL)) Error::Throw();
+    }
 
-void Renderer::DrawLine(Rucola::Math::Point p1, Rucola::Math::Point p2) {
-    SDL_RenderDrawLine(ptr, p1.x, p1.y, p2.x, p2.y);
-}
+    void Renderer::DrawPoint(Rucola::Math::Point point) {
+      SDL_RenderDrawPoint(ptr, point.x, point.y);
+    };
 
-void Renderer::Present() {
-    SDL_RenderPresent(ptr);
-};
+    void Renderer::DrawLine(Rucola::Math::Point p1, Rucola::Math::Point p2) {
+        SDL_RenderDrawLine(ptr, p1.x, p1.y, p2.x, p2.y);
+    }
 
-void Renderer::DrawRect(Rucola::Math::Rect& rect) {
-    SDLW::Video::Rect r(rect);
-    SDL_RenderDrawRect(ptr, &r);
-}
+    void Renderer::Present() {
+        SDL_RenderPresent(ptr);
+    };
 
-void Renderer::FillRect(Rucola::Math::Rect& rect) {
-    SDLW::Video::Rect r(rect);
-    SDL_RenderFillRect(ptr, &r);
-}
+    void Renderer::DrawRect(Rucola::Math::Rect& rect) {
+        SDLW::Video::Rect r(rect);
+        SDL_RenderDrawRect(ptr, &r);
+    };
+
+    void Renderer::FillRect(Rucola::Math::Rect& rect) {
+        SDLW::Video::Rect r(rect);
+        SDL_RenderFillRect(ptr, &r);
+    };
+
+
+
+    Texture::Texture(Renderer renderer, Surface surface) :
+        ptr(SDL_CreateTextureFromSurface(renderer.ptr, surface.ptr))
+    { };
+
+    Texture::~Texture() {
+        SDL_DestroyTexture(ptr);
+    };
 
 }}}
