@@ -10,11 +10,14 @@ using namespace Rucola::Math;
 namespace Rucola { namespace GUI {
 
 class Controll {
+private:
+protected:
+    SDLW::Video::Renderer renderer;
 public:
     virtual void EnterCursor() = 0;
     virtual void LeaveCursor() = 0;
     virtual void MoveCursor(Point pos) = 0;
-    virtual void Rendering(SDLW::Video::Renderer& renderer, Rect rect) = 0;
+    virtual void Rendering(Rect rect) = 0;
 
 };
 
