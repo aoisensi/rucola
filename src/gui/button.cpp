@@ -15,7 +15,7 @@ void Button::LeaveCursor() { rideing = false; };
 
 void Button::MoveCursor(Point pos) { };
 
-void Button::Rendering(SDLW::Video::Renderer& renderer, Rect rect) {
+void Button::Rendering(Rect rect) {
     if(rideing) {
         renderer.SetDrawColor(Color::Black);
     } else {

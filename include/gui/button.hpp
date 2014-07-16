@@ -19,7 +19,7 @@ public:
     void EnterCursor();
     void LeaveCursor();
     void MoveCursor(Point pos);
-    void Rendering(SDLW::Video::Renderer &renderer, Rect rect);
+    void Rendering(Rect rect);
 };
 }
 }

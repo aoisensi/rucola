@@ -13,6 +13,7 @@ class Controll {
 private:
 protected:
     SDLW::Video::Renderer renderer;
+    
 public:
     virtual void EnterCursor() = 0;
     virtual void LeaveCursor() = 0;
